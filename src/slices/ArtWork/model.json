@@ -1,0 +1,29 @@
+{
+  "id": "art_work",
+  "type": "SharedSlice",
+  "name": "ArtWork",
+  "description": "ArtWork",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "art_work": {
+          "type": "Link",
+          "config": {
+            "label": "Art Work",
+            "select": "document",
+            "customtypes": [
+              "art_work"
+            ]
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
