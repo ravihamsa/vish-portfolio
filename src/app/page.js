@@ -137,6 +137,11 @@ async function getData() {
       fetchLinks: [
         "slider.title",
         "slider.list",
+        "ux_design.title",
+        "ux_design.full_image",
+        "ux_design.description",
+        "ux_design.thumbnail",
+        "ux_design.link",
         "art_work.title",
         "art_work.size",
         "art_work.material",

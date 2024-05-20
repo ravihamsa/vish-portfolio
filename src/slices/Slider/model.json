@@ -29,7 +29,8 @@
             "label": "art_work",
             "select": "document",
             "customtypes": [
-              "art_work"
+              "art_work",
+              "ux_design"
             ]
           }
         }

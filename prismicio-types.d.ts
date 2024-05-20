@@ -327,7 +327,7 @@ export interface SliderDocumentDataListItem {
    * - **API ID Path**: slider.list[].art_work
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  art_work: prismic.ContentRelationshipField<"art_work">;
+  art_work: prismic.ContentRelationshipField<"art_work" | "ux_design">;
 }
 
 /**
@@ -369,12 +369,78 @@ interface SliderDocumentData {
 export type SliderDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<SliderDocumentData>, "slider", Lang>;
 
+/**
+ * Content for UX Design documents
+ */
+interface UxDesignDocumentData {
+  /**
+   * Title field in *UX Design*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: ux_design.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.RichTextField;
+
+  /**
+   * Thumbnail field in *UX Design*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: ux_design.thumbnail
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  thumbnail: prismic.ImageField<never>;
+
+  /**
+   * Full Image field in *UX Design*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: ux_design.full_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  full_image: prismic.ImageField<never>;
+
+  /**
+   * Link field in *UX Design*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: ux_design.link
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
+}
+
+/**
+ * UX Design document from Prismic
+ *
+ * - **API ID**: `ux_design`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type UxDesignDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<UxDesignDocumentData>,
+    "ux_design",
+    Lang
+  >;
+
 export type AllDocumentTypes =
   | ArtWorkDocument
   | NavigationDocument
   | PageDocument
   | SettingsDocument
-  | SliderDocument;
+  | SliderDocument
+  | UxDesignDocument;
 
 /**
  * Primary content in *ArtWork → Primary*
@@ -732,7 +798,7 @@ export interface SliderSliceDefaultItem {
    * - **API ID Path**: slider.items[].art_work
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  art_work: prismic.ContentRelationshipField<"art_work">;
+  art_work: prismic.ContentRelationshipField<"art_work" | "ux_design">;
 }
 
 /**
@@ -970,6 +1036,8 @@ declare module "@prismicio/client" {
       SliderDocument,
       SliderDocumentData,
       SliderDocumentDataListItem,
+      UxDesignDocument,
+      UxDesignDocumentData,
       AllDocumentTypes,
       ArtWorkSlice,
       ArtWorkSliceDefaultPrimary,

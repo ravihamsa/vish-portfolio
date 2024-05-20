@@ -1,7 +1,7 @@
 {
   "format": "custom",
-  "id": "slider",
-  "label": "Slider",
+  "id": "ux_design",
+  "label": "UX Design",
   "repeatable": true,
   "status": true,
   "json": {
@@ -21,21 +21,28 @@
           "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
         }
       },
-      "list": {
-        "type": "Group",
+      "thumbnail": {
+        "type": "Image",
         "config": {
-          "label": "List",
-          "repeat": true,
-          "fields": {
-            "art_work": {
-              "type": "Link",
-              "config": {
-                "label": "Art Work",
-                "select": "document",
-                "customtypes": ["art_work", "ux_design"]
-              }
-            }
-          }
+          "label": "Thumbnail",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "full_image": {
+        "type": "Image",
+        "config": {
+          "label": "Full Image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "link": {
+        "type": "Link",
+        "config": {
+          "label": "Link",
+          "placeholder": "",
+          "select": null
         }
       }
     }

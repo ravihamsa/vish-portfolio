@@ -1,5 +1,5 @@
 import { components } from "@/slices";
-import { PrismicRichText, SliceZone } from "@prismicio/react";
+import { PrismicLink, PrismicRichText, SliceZone } from "@prismicio/react";
 import { PrismicNextImage } from "@prismicio/next";
 
 /**
@@ -20,6 +20,7 @@ const Slider = ({ slice }) => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
           {slice.items.map((item, index) => {
             let art = item.art_work.data;
+            if (!art) return null;
             return (
               <div key={index} className="relative">
                 <PrismicNextImage field={art.thumbnail} />
@@ -27,6 +28,9 @@ const Slider = ({ slice }) => {
                   <PrismicRichText field={art.title} />
                   <PrismicRichText field={art.material} />
                   <PrismicRichText field={art.size} />
+                  {art.link ? (
+                    <PrismicLink field={art.link}> Test</PrismicLink>
+                  ) : null}
                 </div>
               </div>
             );
