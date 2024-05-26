@@ -11,14 +11,16 @@ const ArtWorkModal = ({ art, onNext, onPrev, onClose }) => {
         className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-75 z-10"
         onClick={onClose}
       ></div>
-      <div className="fixed top-0 left-0 w-full h-full z-10 pointer-events-none px-5 md:px-20">
-        <div className="relative top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-8 z-20 w-full pointer-events-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <div className="col-span-1 lg:col-span-2">
-              <PrismicNextImage field={art.full_image} className="w-full" />
+      <div className="fixed top-0 left-0 w-full z-10 pointer-events-none p-5 lg:p-20 flex justify-center">
+        <div className="bg-white p-8 z-20 pointer-events-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 w-[60vw] lg:w-[40vw]">
+            <div className="col-span-1 lg:col-span-2 ">
+              <PrismicNextImage
+                field={art.full_image}
+                className="w-full h-full object-contain"
+              />
             </div>
-
-            <div className="relative">
+            <div className="relative col-span-1">
               <div className="w-full flex justify-between py-4">
                 <button
                   onClick={onPrev}
