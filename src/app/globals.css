@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+a {
+   @apply text-primary
+}
+a:hover {
+   @apply text-slate-500
+}
+
+body {
+   @apply text-xs md:text-sm lg:text-base text-slate-800
+}

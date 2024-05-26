@@ -123,7 +123,7 @@ const Slider = ({ slice }) => {
         <h1 className="text-xl uppercase m-8">
           <PrismicRichText field={slice.primary.title} />
         </h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 m-8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 m-8">
           {slice.items.map((item, index) => {
             let art = item.art_work.data;
             if (!art) return null;
@@ -137,7 +137,7 @@ const Slider = ({ slice }) => {
                 }}
               >
                 <PrismicNextImage field={art.thumbnail} className="w-full" />
-                <div className="w-full h-full text-d-gray mb-3">
+                <div className="w-full text-d-gray mb-3">
                   <PrismicRichText field={art.title} />
                   <PrismicRichText field={art.material} />
                   <PrismicRichText field={art.size} />

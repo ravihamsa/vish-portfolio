@@ -33,7 +33,7 @@ export async function Header() {
       <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3 leading-none ">
         <PrismicNextLink
           href="/"
-          className="text-xl font-light tracking-tight flex items-center gap-2 tex"
+          className="text-xl font-light tracking-tight flex items-center gap-2 tex text-slate-800"
         >
           <Image
             src={"/assets/images/logo.png"}
