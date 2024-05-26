@@ -7,6 +7,9 @@ import * as prismic from "@prismicio/client";
 
 import { createClient, repositoryName } from "@/prismicio";
 import { Bounded } from "@/components/Bounded";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { Header } from "@/components/Header";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -25,40 +28,77 @@ export default async function RootLayout({ children }) {
         <Header />
         {children}
         <PrismicPreview repositoryName={repositoryName} />
+        <Footer />
       </body>
     </html>
   );
 }
 
-async function Header() {
-  const client = createClient();
-  const settings = await client.getSingle("settings");
-  const navigation = await client.getSingle("navigation");
-
+function Footer() {
   return (
-    <Bounded as="header" yPadding="sm">
-      <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-3 leading-none">
-        <PrismicNextLink
-          href="/"
-          className="text-xl font-semibold tracking-tight"
-        >
-          <PrismicText field={settings.data.siteTitle} />
-        </PrismicNextLink>
-        <nav>
-          <ul className="flex flex-wrap gap-6 md:gap-10">
-            {navigation.data?.links.map((item) => (
-              <li
-                key={prismic.asText(item.label)}
-                className="font-semibold tracking-tight text-slate-800"
-              >
-                <PrismicNextLink field={item.link}>
-                  <PrismicText field={item.label} />
-                </PrismicNextLink>
-              </li>
-            ))}
-          </ul>
-        </nav>
+    <footer className="w-full ">
+      <div className="container bg-gray flex flex-wrap justify-around  m-auto p-0 md:p-6">
+        <div className="flex w-full md:w-auto p-4">
+          <svg
+            className="w-6 h-6 text-gray-800 dark:text-d-gray mr-2"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M6 15h12M6 6h12m-6 12h.01M7 21h10a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1Z"
+            />
+          </svg>
+          <h3>+91 9448450245</h3>
+        </div>
+        <div className="flex w-full md:w-auto p-4">
+          <svg
+            className="w-6 h-6 text-gray-800 dark:text-d-gray mr-2"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M11 16v-5.5A3.5 3.5 0 0 0 7.5 7m3.5 9H4v-5.5A3.5 3.5 0 0 1 7.5 7m3.5 9v4M7.5 7H14m0 0V4h2.5M14 7v3m-3.5 6H20v-6a3 3 0 0 0-3-3m-2 9v4m-8-6.5h1"
+            />
+          </svg>
+          <h3>vinahe@gmail.com</h3>
+        </div>
+        <div className="flex w-full md:w-auto p-4">
+          <svg
+            className="w-6 h-6 text-gray-800 dark:text-d-gray mr-2"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="m4 12 8-8 8 8M6 10.5V19a1 1 0 0 0 1 1h3v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h3a1 1 0 0 0 1-1v-8.5"
+            />
+          </svg>
+          <h3>Bangalore, Karnataka - 560078</h3>
+        </div>
       </div>
-    </Bounded>
+    </footer>
   );
 }

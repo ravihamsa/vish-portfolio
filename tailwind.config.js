@@ -9,7 +9,12 @@ module.exports = {
     fontFamily: {
       sans: 'var(--font-inter), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
     },
-    extend: {},
+    extend: {
+      colors: {
+        primary: "#D17904",
+        gray: "#F1F0F2",
+      },
+    },
   },
   plugins: [require("@tailwindcss/aspect-ratio")],
 };
