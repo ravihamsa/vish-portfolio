@@ -11,13 +11,13 @@ const ArtWorkModal = ({ art, onNext, onPrev, onClose }) => {
         className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-75 z-10"
         onClick={onClose}
       ></div>
-      <div className="fixed top-0 left-0 w-full z-10 pointer-events-none p-5 lg:p-20 flex justify-center">
-        <div className="bg-white p-8 z-20 pointer-events-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 w-[60vw] lg:w-[40vw]">
+      <div className="fixed top-0 left-0 w-full z-10 pointer-events-none p-4 lg:p-20 flex justify-center">
+        <div className="bg-white p-4 lg:p-8 z-20 pointer-events-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="col-span-1 lg:col-span-2 ">
               <PrismicNextImage
                 field={art.full_image}
-                className="w-full h-full object-contain"
+                className="w-[345px] md:w-[500px] lg:w-[800px] h-full object-contain"
               />
             </div>
             <div className="relative col-span-1">
@@ -138,7 +138,9 @@ const Slider = ({ slice }) => {
               >
                 <PrismicNextImage field={art.thumbnail} className="w-full" />
                 <div className="w-full text-d-gray mb-3">
-                  <PrismicRichText field={art.title} />
+                  <h1 className="font-semibold">
+                    <PrismicRichText field={art.title} />
+                  </h1>
                   <PrismicRichText field={art.material} />
                   <PrismicRichText field={art.size} />
                   {art.link ? (
