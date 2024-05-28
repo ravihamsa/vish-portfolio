@@ -4,6 +4,8 @@ import { SliceZone } from "@prismicio/react";
 
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
+import * as prismic from "@prismicio/client";
+import { ActiveLink } from "@/components/Header";
 
 /**
  * @typedef {{ uid: string }} Params
@@ -34,6 +36,43 @@ export async function generateMetadata({ params }) {
   };
 }
 
+const workOfArtsRoutes = [
+  "work-of-art",
+  "work-of-art-page-2023",
+  "work-of-art-page-older",
+];
+
+const PageHeader = async ({ params, title }) => {
+  const client = createClient();
+  let subNav = { data: { links: [] } };
+  if (workOfArtsRoutes.includes(params.uid)) {
+    subNav = await client.getSingle("art_work_navigation");
+  }
+  return (
+    <div className="container m-auto max-w-6xl">
+      <div className="flex justify-start">
+        <div>
+          <h1 className="font-semibold uppercase mr-10">{title}</h1>
+        </div>
+        <nav>
+          <ul className="flex flex-wrap gap-6 md:gap-10">
+            {subNav.data?.links.map((item) => (
+              <li
+                key={prismic.asText(item.label)}
+                className="font-light tracking-tight text-primary hover:text-slate-600 transition-colors duration-200 underline-offset-4 [&_.active]:underline [&_.active]:text-slate-800"
+              >
+                <ActiveLink href={prismic.asLink(item.link)}>
+                  {prismic.asText(item.label)}
+                </ActiveLink>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+    </div>
+  );
+};
+
 /**
  * @param {{ params: Params }}
  */
@@ -59,7 +98,14 @@ export default async function Page({ params }) {
     })
     .catch(() => notFound());
 
-  return <SliceZone slices={page.data.slices} components={components} />;
+  const title = asText(page.data.title);
+
+  return (
+    <>
+      <PageHeader params={params} title={title} />
+      <SliceZone slices={page.data.slices} components={components} />
+    </>
+  );
 }
 
 export async function generateStaticParams() {

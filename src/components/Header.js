@@ -8,7 +8,7 @@ import Image from "next/image";
 import { createClient } from "@/prismicio";
 import { usePathname, useRouter } from "next/navigation";
 
-function ActiveLink({ children, href }) {
+export function ActiveLink({ children, href }) {
   const router = useRouter();
   const pathName = usePathname();
   const className = pathName === href ? "active" : "";

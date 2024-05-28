@@ -114,6 +114,63 @@ export type ArtWorkDocument<Lang extends string = string> =
   >;
 
 /**
+ * Item in *Art Work Navigation → Links*
+ */
+export interface ArtWorkNavigationDocumentDataLinksItem {
+  /**
+   * Link field in *Art Work Navigation → Links*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: art_work_navigation.links[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
+
+  /**
+   * Label field in *Art Work Navigation → Links*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: art_work_navigation.links[].label
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  label: prismic.TitleField;
+}
+
+/**
+ * Content for Art Work Navigation documents
+ */
+interface ArtWorkNavigationDocumentData {
+  /**
+   * Links field in *Art Work Navigation*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: art_work_navigation.links[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  links: prismic.GroupField<Simplify<ArtWorkNavigationDocumentDataLinksItem>>;
+}
+
+/**
+ * Art Work Navigation document from Prismic
+ *
+ * - **API ID**: `art_work_navigation`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ArtWorkNavigationDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<ArtWorkNavigationDocumentData>,
+    "art_work_navigation",
+    Lang
+  >;
+
+/**
  * Item in *Navigation → Links*
  */
 export interface NavigationDocumentDataLinksItem {
@@ -436,6 +493,7 @@ export type UxDesignDocument<Lang extends string = string> =
 
 export type AllDocumentTypes =
   | ArtWorkDocument
+  | ArtWorkNavigationDocument
   | NavigationDocument
   | PageDocument
   | SettingsDocument
@@ -1025,6 +1083,9 @@ declare module "@prismicio/client" {
     export type {
       ArtWorkDocument,
       ArtWorkDocumentData,
+      ArtWorkNavigationDocument,
+      ArtWorkNavigationDocumentData,
+      ArtWorkNavigationDocumentDataLinksItem,
       NavigationDocument,
       NavigationDocumentData,
       NavigationDocumentDataLinksItem,

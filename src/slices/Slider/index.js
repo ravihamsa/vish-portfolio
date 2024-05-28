@@ -14,7 +14,7 @@ const ArtWorkModal = ({ art, onNext, onPrev, onClose }) => {
       <div className="fixed top-0 left-0 w-full z-10 pointer-events-none p-4 lg:p-20 flex justify-center">
         <div className="bg-white p-4 lg:p-8 z-20 pointer-events-auto">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <div className="col-span-1 lg:col-span-2 ">
+            <div className="col-span-1 lg:col-span-2 max-h-[80vh]">
               <PrismicNextImage
                 field={art.full_image}
                 className="w-[345px] md:w-[500px] lg:w-[800px] h-full object-contain"
@@ -119,11 +119,11 @@ const Slider = ({ slice }) => {
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
     >
-      <div className="container m-auto">
-        <h1 className="text-xl uppercase m-8">
+      <div className="container m-auto max-w-6xl">
+        <h1 className="text-xl uppercase my-8">
           <PrismicRichText field={slice.primary.title} />
         </h1>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 m-8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
           {slice.items.map((item, index) => {
             let art = item.art_work.data;
             if (!art) return null;
@@ -136,7 +136,10 @@ const Slider = ({ slice }) => {
                   setSelectedArtIndex(index);
                 }}
               >
-                <PrismicNextImage field={art.thumbnail} className="w-full" />
+                <PrismicNextImage
+                  field={art.thumbnail}
+                  className="w-full object-cover aspect-1"
+                />
                 <div className="w-full text-d-gray mb-3">
                   <h1 className="font-semibold">
                     <PrismicRichText field={art.title} />
