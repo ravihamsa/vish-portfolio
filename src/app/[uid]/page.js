@@ -49,7 +49,7 @@ const PageHeader = async ({ params, title }) => {
     subNav = await client.getSingle("art_work_navigation");
   }
   return (
-    <div className="container m-auto max-w-6xl">
+    <div className="container m-auto max-w-6xl m-6">
       <div className="flex justify-start">
         <div>
           <h1 className="font-semibold uppercase mr-10">{title}</h1>

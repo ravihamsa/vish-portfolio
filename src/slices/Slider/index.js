@@ -120,10 +120,10 @@ const Slider = ({ slice }) => {
       data-slice-variation={slice.variation}
     >
       <div className="container m-auto max-w-6xl">
-        <h1 className="text-xl uppercase my-8">
+        <h1 className="text-xl uppercase m-6">
           <PrismicRichText field={slice.primary.title} />
         </h1>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 m-6">
           {slice.items.map((item, index) => {
             let art = item.art_work.data;
             if (!art) return null;
