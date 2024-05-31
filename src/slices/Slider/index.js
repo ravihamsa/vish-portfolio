@@ -15,10 +15,12 @@ const ArtWorkModal = ({ art, onNext, onPrev, onClose }) => {
         <div className="bg-white p-4 lg:p-8 z-20 pointer-events-auto">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="col-span-1 lg:col-span-2 max-h-[80vh]">
-              <PrismicNextImage
-                field={art.full_image}
-                className="w-[345px] md:w-[500px] lg:w-[800px] h-full object-contain"
-              />
+              <PrismicLink field={art.link}>
+                <PrismicNextImage
+                  field={art.full_image}
+                  className="w-[345px] md:w-[500px] lg:w-[800px] h-full object-contain"
+                />
+              </PrismicLink>
             </div>
             <div className="relative col-span-1">
               <div className="w-full flex justify-between py-4">
@@ -114,8 +116,6 @@ const ArtWorkModal = ({ art, onNext, onPrev, onClose }) => {
 const Slider = ({ slice }) => {
   const router = useRouter();
   const pathname = usePathname();
-  const [selectedArt, setSelectedArt] = useState(null);
-  const [selectedArtIndex, setSelectedArtIndex] = useState(-1);
   return (
     <section
       data-slice-type={slice.slice_type}
@@ -129,26 +129,17 @@ const Slider = ({ slice }) => {
           {slice.items.map((item, index) => {
             let art = item.art_work.data;
             if (!art) return null;
+            const prefix = art.material ? "art-gallery" : "ux-gallery";
+            let link = `/${prefix}/${pathname !== "/" ? pathname : "home"}/${slice.id}/${index}`;
+
             return (
-              <div
-                key={index}
-                className="relative"
-                onClick={() => {
-                  if (art.material) {
-                    router.push(
-                      `/art-gallery/${pathname !== "/" ? pathname : "home"}/${slice.id}/${index}`,
-                    );
-                  } else {
-                    router.push(
-                      `/ux-gallery/${pathname !== "/" ? pathname : "home"}/${slice.id}/${index}`,
-                    );
-                  }
-                }}
-              >
-                <PrismicNextImage
-                  field={art.thumbnail}
-                  className="w-full object-cover aspect-1"
-                />
+              <div key={index} className="relative">
+                <a href={link}>
+                  <PrismicNextImage
+                    field={art.thumbnail}
+                    className="w-full object-cover aspect-1"
+                  />
+                </a>
                 <div className="w-full text-d-gray mb-3">
                   <h1 className="font-semibold">
                     <PrismicRichText field={art.title} />
@@ -164,35 +155,6 @@ const Slider = ({ slice }) => {
           })}
         </div>
       </div>
-      {selectedArt ? (
-        <ArtWorkModal
-          art={selectedArt}
-          onNext={
-            selectedArtIndex < slice.items.length - 1
-              ? () => {
-                  setSelectedArtIndex(selectedArtIndex + 1);
-                  setSelectedArt(
-                    slice.items[selectedArtIndex + 1].art_work.data,
-                  );
-                }
-              : null
-          }
-          onPrev={
-            selectedArtIndex > 0
-              ? () => {
-                  setSelectedArtIndex(selectedArtIndex - 1);
-                  setSelectedArt(
-                    slice.items[selectedArtIndex - 1].art_work.data,
-                  );
-                }
-              : null
-          }
-          onClose={() => {
-            setSelectedArt(null);
-            setSelectedArtIndex(-1);
-          }}
-        />
-      ) : null}
     </section>
   );
 };

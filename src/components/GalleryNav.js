@@ -7,7 +7,7 @@ export default function GalleryNav({ prevUrl, nextUrl }) {
     <div className="w-full flex justify-between py-4">
       <button
         onClick={() => {
-          router.push(prevUrl, { replace: true });
+          router.replace(prevUrl);
         }}
         disabled={prevUrl === null}
         className="disabled:opacity-0"
@@ -32,7 +32,7 @@ export default function GalleryNav({ prevUrl, nextUrl }) {
       </button>
       <button
         onClick={() => {
-          router.push(nextUrl);
+          router.replace(nextUrl);
         }}
         disabled={nextUrl === null}
         className="disabled:opacity-0"
