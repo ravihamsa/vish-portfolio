@@ -57,6 +57,5 @@ async function getData() {
       ],
     })
     .catch(() => notFound());
-  console.log(JSON.stringify(page, null, 2));
   return page;
 }

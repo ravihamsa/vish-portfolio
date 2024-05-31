@@ -8,7 +8,6 @@ import dynamic from "next/dynamic";
 const GalleryNav = dynamic(() => import("@/components/GalleryNav"));
 
 export async function generateMetadata({ params }) {
-  console.log(params);
   const client = createClient();
   const page = await client
     .getByUID("page", params.pageuid)
@@ -30,9 +29,7 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function Page({ params }) {
-  console.log(params, "Acgti");
   const data = await getData(params);
-  console.log({ data });
   const { prevUrl, nextUrl, art, artIndex } = data;
   return (
     <div className="container m-auto max-w-6xl">

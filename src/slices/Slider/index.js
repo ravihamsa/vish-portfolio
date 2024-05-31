@@ -1,5 +1,4 @@
 "use client";
-import { components } from "@/slices";
 import { PrismicLink, PrismicRichText, SliceZone } from "@prismicio/react";
 import { PrismicNextImage } from "@prismicio/next";
 import { useState } from "react";
@@ -137,10 +136,12 @@ const Slider = ({ slice }) => {
                 onClick={() => {
                   if (art.material) {
                     router.push(
-                      `/art-gallery/${pathname}/${slice.id}/${index}`,
+                      `/art-gallery/${pathname !== "/" ? pathname : "home"}/${slice.id}/${index}`,
                     );
                   } else {
-                    router.push(`/ux-gallery/${pathname}/${slice.id}/${index}`);
+                    router.push(
+                      `/ux-gallery/${pathname !== "/" ? pathname : "home"}/${slice.id}/${index}`,
+                    );
                   }
                 }}
               >
