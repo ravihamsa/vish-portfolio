@@ -1,14 +1,9 @@
 import "./globals.css";
 
 import { Inter } from "next/font/google";
-import { PrismicText } from "@prismicio/react";
 import { PrismicNextLink, PrismicPreview } from "@prismicio/next";
-import * as prismic from "@prismicio/client";
 
-import { createClient, repositoryName } from "@/prismicio";
-import { Bounded } from "@/components/Bounded";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { repositoryName } from "@/prismicio";
 import { Header } from "@/components/Header";
 
 const inter = Inter({
@@ -36,7 +31,7 @@ export default async function RootLayout({ children }) {
 
 function Footer() {
   return (
-    <footer className="w-full ">
+    <footer className="w-full m-auto max-w-6xl">
       <div className="container bg-gray flex flex-wrap justify-around  m-auto p-0 md:p-6">
         <div className="flex w-full md:w-auto p-4">
           <svg

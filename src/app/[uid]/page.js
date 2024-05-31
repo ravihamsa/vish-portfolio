@@ -5,7 +5,9 @@ import { SliceZone } from "@prismicio/react";
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
 import * as prismic from "@prismicio/client";
-import { ActiveLink } from "@/components/Header";
+import dynamic from "next/dynamic";
+
+const ActiveLink = dynamic(() => import("@/components/ActiveLink"));
 
 /**
  * @typedef {{ uid: string }} Params
@@ -49,7 +51,7 @@ const PageHeader = async ({ params, title }) => {
     subNav = await client.getSingle("art_work_navigation");
   }
   return (
-    <div className="container m-auto max-w-6xl m-6">
+    <div className="container m-auto max-w-6xl px-6">
       <div className="flex justify-start">
         <div>
           <h1 className="font-semibold uppercase mr-10">{title}</h1>
@@ -83,11 +85,13 @@ export default async function Page({ params }) {
       fetchLinks: [
         "slider.title",
         "slider.list",
+        "ux_design.uid",
         "ux_design.title",
         "ux_design.full_image",
         "ux_design.description",
         "ux_design.thumbnail",
         "ux_design.link",
+        "art_work.uid",
         "art_work.title",
         "art_work.size",
         "art_work.material",
@@ -111,23 +115,7 @@ export default async function Page({ params }) {
 export async function generateStaticParams() {
   const client = createClient();
 
-  const pages = await client.getAllByType("page", {
-    fetchLinks: [
-      "slider.title",
-      "slider.list",
-      "ux_design.title",
-      "ux_design.full_image",
-      "ux_design.description",
-      "ux_design.thumbnail",
-      "ux_design.link",
-      "art_work.title",
-      "art_work.size",
-      "art_work.material",
-      "art_work.full_image",
-      "art_work.thumbnail",
-      "art_work.description",
-    ],
-  });
+  const pages = await client.getAllByType("page", {});
   return pages.map((page) => {
     return { uid: page.uid };
   });

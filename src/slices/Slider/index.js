@@ -3,6 +3,7 @@ import { components } from "@/slices";
 import { PrismicLink, PrismicRichText, SliceZone } from "@prismicio/react";
 import { PrismicNextImage } from "@prismicio/next";
 import { useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
 
 const ArtWorkModal = ({ art, onNext, onPrev, onClose }) => {
   return (
@@ -112,6 +113,8 @@ const ArtWorkModal = ({ art, onNext, onPrev, onClose }) => {
  * @param {SliderProps}
  */
 const Slider = ({ slice }) => {
+  const router = useRouter();
+  const pathname = usePathname();
   const [selectedArt, setSelectedArt] = useState(null);
   const [selectedArtIndex, setSelectedArtIndex] = useState(-1);
   return (
@@ -132,8 +135,13 @@ const Slider = ({ slice }) => {
                 key={index}
                 className="relative"
                 onClick={() => {
-                  setSelectedArt(art);
-                  setSelectedArtIndex(index);
+                  if (art.material) {
+                    router.push(
+                      `/art-gallery/${pathname}/${slice.id}/${index}`,
+                    );
+                  } else {
+                    router.push(`/ux-gallery/${pathname}/${slice.id}/${index}`);
+                  }
                 }}
               >
                 <PrismicNextImage

@@ -1,4 +1,3 @@
-"use client";
 import * as prismic from "@prismicio/client";
 import { PrismicText } from "@prismicio/react";
 import { PrismicNextLink } from "@prismicio/next";
@@ -6,23 +5,9 @@ import { PrismicNextLink } from "@prismicio/next";
 import { Bounded } from "./Bounded";
 import Image from "next/image";
 import { createClient } from "@/prismicio";
-import { usePathname, useRouter } from "next/navigation";
+import dynamic from "next/dynamic";
 
-export function ActiveLink({ children, href }) {
-  const router = useRouter();
-  const pathName = usePathname();
-  const className = pathName === href ? "active" : "";
-  const handleClick = (e) => {
-    e.preventDefault();
-    router.push(href);
-  };
-
-  return (
-    <a href={href} onClick={handleClick} className={className}>
-      {children}
-    </a>
-  );
-}
+const ActiveLink = dynamic(() => import("@/components/ActiveLink"));
 
 export async function Header() {
   const client = createClient();
