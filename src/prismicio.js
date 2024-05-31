@@ -19,6 +19,14 @@ const routes = [
     path: "/:uid",
   },
   {
+    type: "art_work",
+    path: "/:uid",
+  },
+  {
+    type: "ux_design",
+    path: "/:uid",
+  },
+  {
     type: "page",
     uid: "home",
     path: "/",
