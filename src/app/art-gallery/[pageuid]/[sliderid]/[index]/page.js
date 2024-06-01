@@ -1,7 +1,6 @@
 import { createClient } from "@/prismicio";
 import { PrismicNextImage } from "@prismicio/next";
 import { PrismicLink, PrismicRichText } from "@prismicio/react";
-import { notFound } from "next/navigation";
 import { asText } from "@prismicio/client";
 import dynamic from "next/dynamic";
 
@@ -11,7 +10,7 @@ export async function generateMetadata({ params }) {
   const data = await getData(params);
   const { art } = data;
   return {
-    title: `${asText(art.title)}`,
+    title: `${asText(art.title)} | VISHWANATH HEGDE`,
     description: art.meta_description,
     openGraph: {
       title: art.title,
