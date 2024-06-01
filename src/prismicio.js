@@ -47,7 +47,7 @@ const routes = [
  *
  * @param config {prismic.ClientConfig} - Configuration for the Prismic client.
  */
-export const createClient = (config) => {
+export const createClient = (config = {}) => {
   const client = prismic.createClient(repositoryName, {
     routes,
     fetchOptions:

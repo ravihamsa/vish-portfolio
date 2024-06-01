@@ -4,7 +4,7 @@ import fs from "fs";
 import { resolve } from "path";
 
 export async function GET(request) {
-  const filePath = resolve("src/data/pages.json");
+  const dataPath = resolve("src/data/data.json");
   const client = createClient();
   const pages = await client.getAllByType("page", {
     fetchLinks: [
@@ -25,7 +25,14 @@ export async function GET(request) {
       "art_work.description",
     ],
   });
-  console.log(filePath);
-  fs.writeFileSync(filePath, JSON.stringify(pages));
-  return NextResponse.json(pages);
+
+  const settings = await client.getSingle("settings");
+  const navigation = await client.getSingle("navigation");
+  const data = {
+    pages,
+    settings,
+    navigation,
+  };
+  fs.writeFileSync(dataPath, JSON.stringify(data));
+  return NextResponse.json(data);
 }

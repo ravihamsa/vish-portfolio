@@ -6,13 +6,14 @@ import { Bounded } from "./Bounded";
 import Image from "next/image";
 import { createClient } from "@/prismicio";
 import dynamic from "next/dynamic";
+import prismicData from "@/data/data.json";
+
+const { settings, navigation } = prismicData;
 
 const ActiveLink = dynamic(() => import("@/components/ActiveLink"));
 
 export async function Header() {
   const client = createClient();
-  const settings = await client.getSingle("settings");
-  const navigation = await client.getSingle("navigation");
   return (
     <Bounded as="header" yPadding="sm">
       <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3 leading-none ">

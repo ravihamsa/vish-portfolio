@@ -2,7 +2,9 @@ import { PrismicNextImage } from "@prismicio/next";
 import { PrismicLink, PrismicRichText } from "@prismicio/react";
 import { asText } from "@prismicio/client";
 import dynamic from "next/dynamic";
-import pages from "@/data/pages.json";
+import prismicData from "@/data/data.json";
+
+const { pages } = prismicData;
 
 const GalleryNav = dynamic(() => import("@/components/GalleryNav"));
 
