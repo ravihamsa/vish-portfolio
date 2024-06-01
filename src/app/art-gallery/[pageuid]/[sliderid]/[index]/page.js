@@ -1,8 +1,8 @@
-import { createClient } from "@/prismicio";
 import { PrismicNextImage } from "@prismicio/next";
 import { PrismicLink, PrismicRichText } from "@prismicio/react";
 import { asText } from "@prismicio/client";
 import dynamic from "next/dynamic";
+import pages from "@/data/pages.json";
 
 const GalleryNav = dynamic(() => import("@/components/GalleryNav"));
 
@@ -56,80 +56,34 @@ export default async function Page({ params }) {
   );
 }
 
-function getData(params) {
-  const client = createClient();
+async function getData(params) {
   console.log(params, "params", params.pageuid);
-  return client
-    .getByUID("page", params.pageuid, {
-      fetchLinks: [
-        "slider.title",
-        "slider.list",
-        "ux_design.uid",
-        "ux_design.title",
-        "ux_design.full_image",
-        "ux_design.description",
-        "ux_design.thumbnail",
-        "ux_design.link",
-        "art_work.title",
-        "art_work.uid",
-        "art_work.size",
-        "art_work.material",
-        "art_work.full_image",
-        "art_work.thumbnail",
-        "art_work.description",
-      ],
-    })
-    .then((resp) => {
-      const { data } = resp;
-      const slice = data.slices.find(
-        (item) => item.id === decodeURIComponent(params.sliderid),
-      );
-      const artIndex = +params.index;
-      const art = slice.items[artIndex].art_work.data;
-      const prefix = art.material ? "art-gallery" : "ux-gallery";
-      const nextUrl =
-        artIndex < slice.items.length - 1
-          ? `/${prefix}/${params.pageuid}/${params.sliderid}/${artIndex + 1}`
-          : null;
+  const resp = pages.find((item) => item.uid === params.pageuid);
+  const { data } = resp;
+  const slice = data.slices.find(
+    (item) => item.id === decodeURIComponent(params.sliderid),
+  );
+  const artIndex = +params.index;
+  const art = slice.items[artIndex].art_work.data;
+  const prefix = art.material ? "art-gallery" : "ux-gallery";
+  const nextUrl =
+    artIndex < slice.items.length - 1
+      ? `/${prefix}/${params.pageuid}/${params.sliderid}/${artIndex + 1}`
+      : null;
 
-      const prevUrl =
-        artIndex > 0
-          ? `/${prefix}/${params.pageuid}/${params.sliderid}/${artIndex - 1}`
-          : null;
-      return {
-        prevUrl,
-        nextUrl,
-        art,
-        artIndex,
-      };
-    })
-    .catch((e) => {
-      console.log(e);
-      return <div>ravi</div>;
-    });
+  const prevUrl =
+    artIndex > 0
+      ? `/${prefix}/${params.pageuid}/${params.sliderid}/${artIndex - 1}`
+      : null;
+  return {
+    prevUrl,
+    nextUrl,
+    art,
+    artIndex,
+  };
 }
 
 export async function generateStaticParams(params) {
-  const client = createClient();
-  const pages = await client.getAllByType("page", {
-    fetchLinks: [
-      "slider.title",
-      "slider.list",
-      "ux_design.uid",
-      "ux_design.title",
-      "ux_design.full_image",
-      "ux_design.description",
-      "ux_design.thumbnail",
-      "ux_design.link",
-      "art_work.title",
-      "art_work.uid",
-      "art_work.size",
-      "art_work.material",
-      "art_work.full_image",
-      "art_work.thumbnail",
-      "art_work.description",
-    ],
-  });
   const sliderPages = [];
   pages.map((page) => {
     const sliderSlices = page.data.slices.filter(
