@@ -10,7 +10,7 @@ export default function ArtLink({ art, slice, index }) {
     <a href={link}>
       <PrismicNextImage
         field={art.thumbnail}
-        className="w-full object-cover aspect-1 mb-8"
+        className="w-full object-cover aspect-1 mb-6"
       />
     </a>
   );

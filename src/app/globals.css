@@ -11,5 +11,5 @@ a:hover {
 }
 
 body {
-   @apply text-xs md:text-sm lg:text-base text-slate-800
+   @apply text-xs md:text-sm lg:text-sm text-slate-800
 }

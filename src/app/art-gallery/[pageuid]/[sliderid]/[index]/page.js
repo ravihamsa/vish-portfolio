@@ -50,8 +50,11 @@ export default async function Page({ params }) {
               <strong>Size:</strong> <PrismicRichText field={art.size} />
             </div>
           ) : null}
-
-          {art.link ? <PrismicLink field={art.link}> Test</PrismicLink> : null}
+          {art.description ? (
+            <div className="mb-4">
+              <PrismicRichText field={art.description} />
+            </div>
+          ) : null}
         </div>
       </div>
     </div>

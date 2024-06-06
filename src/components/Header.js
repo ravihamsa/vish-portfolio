@@ -17,7 +17,7 @@ export async function Header() {
       <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3 leading-none ">
         <PrismicNextLink
           href="/"
-          className="text-xl tracking-tight flex items-center gap-2 tex text-slate-800"
+          className="font-semibold text-xl tracking-tight flex items-center gap-2 tex text-slate-800"
         >
           <Image
             src={"/assets/images/logo.png"}
@@ -32,7 +32,7 @@ export async function Header() {
             {navigation.data?.links.map((item) => (
               <li
                 key={prismic.asText(item.label)}
-                className="tracking-tight text-primary hover:text-slate-600 transition-colors duration-200 underline-offset-4 [&_.active]:underline [&_.active]:text-slate-800"
+                className="tracking-tight text-base text-primary hover:text-slate-600 transition-colors duration-200 underline-offset-4 [&_.active]:underline [&_.active]:text-slate-800"
               >
                 <ActiveLink href={prismic.asLink(item.link)}>
                   {prismic.asText(item.label)}
