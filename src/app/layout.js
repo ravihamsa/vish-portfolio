@@ -20,10 +20,15 @@ export default async function RootLayout({ children }) {
     <html lang="en" className={inter.variable}>
       <body className="overflow-x-hidden antialiased">
         {/* @ts-expect-error Async Server Component */}
-        <Header />
-        {children}
-        <PrismicPreview repositoryName={repositoryName} />
-        <Footer />
+        <div className="fixed w-full z-50">
+          <Header />
+        </div>
+        <div className="relative">
+          <Header className="opacity-0" />
+          {children}
+          <PrismicPreview repositoryName={repositoryName} />
+          <Footer />
+        </div>
       </body>
     </html>
   );
