@@ -53,12 +53,12 @@ const PageHeader = async ({ params, title }) => {
   const showPipe = subNav.data.links.length > 0;
   return (
     <div className="container m-auto max-w-6xl px-6">
-      <div className="flex justify-start">
-        <div className="flex items-center">
+      <div className="flex flex-wrap justify-start">
+        <div className="flex items-center w-full md:w-auto mb-2 md:mb-0">
           <h1 className="font-semibold uppercase mr-5 text-2xl">{title}</h1>
-          {showPipe && <span>|</span>}
+          {showPipe && <span className="hidden md:visible">|</span>}
         </div>
-        <nav className="ml-5">
+        <nav className="md:ml-5">
           <ul className="flex flex-wrap gap-6 md:gap-10 h-full items-end">
             {subNav.data?.links.map((item) => (
               <li
