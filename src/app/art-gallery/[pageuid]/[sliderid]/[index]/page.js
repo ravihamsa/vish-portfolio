@@ -35,13 +35,13 @@ export default async function Page({ params }) {
         <div className="w-full">
           <PrismicNextImage field={art.full_image} className="w-full" />
         </div>
-        <div className="font-base">
+        <div className="font-base mt-10">
           <h1 className="text-2xl font-semibold">
             <PrismicRichText field={art.title} />
           </h1>
           <br />
           {art.material ? (
-            <div className="mb-8">
+            <div className="mb-4">
               <strong>Medium:</strong> <PrismicRichText field={art.material} />
             </div>
           ) : null}

@@ -31,8 +31,8 @@ export default async function RootLayout({ children }) {
 
 function Footer() {
   return (
-    <footer className="w-full m-auto max-w-6xl">
-      <div className="container bg-gray flex flex-wrap justify-around  m-auto p-0 md:p-6">
+    <footer className="container m-auto max-w-6xl">
+      <div className="bg-gray flex flex-wrap justify-around  m-auto p-0 md:p-6">
         <div className="flex w-full md:w-auto p-4">
           <svg
             className="w-6 h-6 text-gray-800 dark:text-d-gray mr-2"

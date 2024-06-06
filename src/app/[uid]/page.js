@@ -53,15 +53,16 @@ const PageHeader = async ({ params, title }) => {
   return (
     <div className="container m-auto max-w-6xl px-6">
       <div className="flex justify-start">
-        <div>
-          <h1 className="font-semibold uppercase mr-10">{title}</h1>
+        <div className="flex items-center">
+          <h1 className="font-semibold uppercase mr-5 text-2xl">{title}</h1>
+          <span>|</span>
         </div>
-        <nav>
-          <ul className="flex flex-wrap gap-6 md:gap-10">
+        <nav className="ml-5">
+          <ul className="flex flex-wrap gap-6 md:gap-10 h-full items-end">
             {subNav.data?.links.map((item) => (
               <li
                 key={prismic.asText(item.label)}
-                className="font-light tracking-tight text-primary hover:text-slate-600 transition-colors duration-200 underline-offset-4 [&_.active]:underline [&_.active]:text-slate-800"
+                className="tracking-tight text-primary hover:text-slate-600 transition-colors duration-200 underline-offset-4 [&_.active]:underline [&_.active]:text-slate-800 align-bottom mb-1"
               >
                 <ActiveLink href={prismic.asLink(item.link)}>
                   {prismic.asText(item.label)}

@@ -412,6 +412,17 @@ interface SliderDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#group
    */
   list: prismic.GroupField<Simplify<SliderDocumentDataListItem>>;
+
+  /**
+   * More Link field in *Slider*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: slider.more_link
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  more_link: prismic.LinkField;
 }
 
 /**
@@ -842,6 +853,16 @@ export interface SliderSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   title: prismic.RichTextField;
+
+  /**
+   * More Link field in *Slider → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: slider.primary.more_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  more_link: prismic.LinkField;
 }
 
 /**

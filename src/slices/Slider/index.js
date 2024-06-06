@@ -1,5 +1,6 @@
 import { PrismicLink, PrismicRichText } from "@prismicio/react";
 import dynamic from "next/dynamic";
+import { asText } from "@prismicio/client";
 
 const ArtLink = dynamic(() => import("@/components/ArtLink"));
 
@@ -9,15 +10,25 @@ const ArtLink = dynamic(() => import("@/components/ArtLink"));
  * @param {SliderProps}
  */
 const Slider = ({ slice }) => {
+  const titleText = asText(slice.primary.title);
   return (
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
+      className="mt-12"
     >
       <div className="container m-auto max-w-6xl">
-        <h1 className="text-xl uppercase m-6">
-          <PrismicRichText field={slice.primary.title} />
-        </h1>
+        {titleText !== "" && (
+          <div className="flex items-center gap-x-4 m-6 my-8">
+            <h1 className="text-2xl font-semibold">
+              <PrismicRichText field={slice.primary.title} />
+            </h1>
+            <span>|</span>
+            <PrismicLink field={slice.primary.more_link}>
+              {"More >"}
+            </PrismicLink>
+          </div>
+        )}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 m-6">
           {slice.items.map((item, index) => {
             let art = item.art_work.data;

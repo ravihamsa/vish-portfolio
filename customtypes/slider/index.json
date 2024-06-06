@@ -37,6 +37,15 @@
             }
           }
         }
+      },
+      "more_link": {
+        "type": "Link",
+        "config": {
+          "label": "More Link",
+          "placeholder": "",
+          "allowTargetBlank": false,
+          "select": null
+        }
       }
     }
   }

@@ -4,6 +4,7 @@ import { PrismicNextLink, PrismicNextImage } from "@prismicio/next";
 import { Bounded } from "@/components/Bounded";
 import { Heading } from "@/components/Heading";
 import { PrismicRichText } from "@/components/PrismicRichText";
+import { asText } from "@prismicio/client";
 
 /** @type {import("@prismicio/react").PrismicRichTextProps['components']} */
 const components = {
@@ -30,10 +31,9 @@ const Hero = ({ slice }) => {
       <Bounded yPadding="lg" className="relative">
         <div className="grid justify-items-center gap-8">
           <div className="max-w-2xl text-center uppercase">
-            <PrismicRichText
-              field={slice.primary.text}
-              components={components}
-            />
+            <h2 className="font-semibold leading-tight tracking-tight md:leading-tight text-5xl md:text-6xl mb-4 mt-12 first:mt-0 last:mb-0">
+              {asText(slice.primary.text)}
+            </h2>
           </div>
           {prismic.isFilled.link(slice.primary.buttonLink) && (
             <PrismicNextLink
