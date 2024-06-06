@@ -28,6 +28,9 @@ export async function generateMetadata({ params }) {
 export default async function Page({ params }) {
   const data = await getData(params);
   const { prevUrl, nextUrl, art, artIndex } = data;
+  if (!art) {
+    return null;
+  }
   return (
     <div className="container m-auto max-w-6xl">
       <div className="bg-white p-4 lg:p-8 z-20 pointer-events-auto">
@@ -97,7 +100,7 @@ export async function generateStaticParams(params) {
     sliderSlices.forEach((sliderSlice) => {
       sliderSlice.items.forEach((item, index) => {
         const art = item.art_work.data;
-        const prefix = art.material ? "art-gallery" : "ux-gallery";
+        const prefix = art && art.material ? "art-gallery" : "ux-gallery";
         sliderPages.push({
           uid: `/${prefix}/${page.uid}/${sliderSlice.id}/${index}`,
         });

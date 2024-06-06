@@ -4,7 +4,7 @@ import { PrismicNextImage } from "@prismicio/next";
 
 export default function ArtLink({ art, slice, index }) {
   const pathname = usePathname();
-  const prefix = art.material ? "art-gallery" : "ux-gallery";
+  const prefix = art && art.material ? "art-gallery" : "ux-gallery";
   let link = `/${prefix}/${pathname !== "/" ? pathname : "home"}/${slice.id}/${index}`;
   return (
     <a href={link}>
