@@ -55,7 +55,9 @@ const PageHeader = async ({ params, title }) => {
     <div className="container m-auto max-w-6xl px-6 mt-5">
       <div className="flex flex-wrap justify-start">
         <div className="flex items-center w-full md:w-auto mb-2 md:mb-0">
-          <h1 className="font-semibold uppercase mr-5 text-2xl">{title}</h1>
+          <h1 className="font-semibold uppercase mr-5 text-xl md:text-2xl">
+            {title}
+          </h1>
           {showPipe && <span className="hidden md:visible">|</span>}
         </div>
         <nav className="md:ml-5">

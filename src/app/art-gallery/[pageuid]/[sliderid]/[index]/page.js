@@ -39,7 +39,7 @@ export default async function Page({ params }) {
           <PrismicNextImage field={art.full_image} className="w-full" />
         </div>
         <div className="font-base mt-10">
-          <h1 className="text-2xl font-semibold">
+          <h1 className="text-base md:text-2xl font-semibold">
             <PrismicRichText field={art.title} />
           </h1>
           <br />
