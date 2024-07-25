@@ -122,7 +122,7 @@ export default async function Page({ params }) {
     .catch(() => notFound());
 
   const title = asText(page.data.title);
-  if (params.uid === "ux-design") {
+  if (params.uid === "ux-design-protected") {
     return (
       <>
         <PageHeader params={params} title={title} />
