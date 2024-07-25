@@ -137,6 +137,7 @@ export default async function Page({ params }) {
             <input
               className={"border-2 border-black/60 w-full p-3"}
               placeholder="Enter password"
+              type="password"
             />
             <button className="w-full bg-primary text-white text-2xl p-3">
               ENTER
