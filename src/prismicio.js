@@ -27,6 +27,10 @@ const routes = [
     path: "/:uid",
   },
   {
+    type: "ux_design-protected",
+    path: "/:uid",
+  },
+  {
     type: "page",
     uid: "home",
     path: "/",

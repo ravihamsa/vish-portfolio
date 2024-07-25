@@ -6,6 +6,7 @@ import { createClient } from "@/prismicio";
 import { components } from "@/slices";
 import * as prismic from "@prismicio/client";
 import dynamic from "next/dynamic";
+import prismicData from "@/data/data.json";
 
 const ActiveLink = dynamic(() => import("@/components/ActiveLink"));
 const InfoIcon = (
