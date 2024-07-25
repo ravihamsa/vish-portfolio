@@ -10,7 +10,6 @@ import prismicData from "@/data/data.json";
 const { settings, navigation } = prismicData;
 
 const ActiveLink = dynamic(() => import("@/components/ActiveLink"));
-console.log(navigation.data?.links);
 export async function Header() {
   return (
     <Bounded
