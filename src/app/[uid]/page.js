@@ -6,6 +6,7 @@ import { createClient } from "@/prismicio";
 import { components } from "@/slices";
 import * as prismic from "@prismicio/client";
 import dynamic from "next/dynamic";
+import React from "react";
 import prismicData from "@/data/data.json";
 
 const ActiveLink = dynamic(() => import("@/components/ActiveLink"));
@@ -138,6 +139,71 @@ const projects = [
   },
 ];
 
+const UXDesignPage = ({ params }) => {
+  return (
+    <>
+      <PageHeader params={params} title="About Me" />
+      <div className="container m-auto max-w-6xl px-6 mt-5  justify-center">
+        <div className="flex flex-col md:flex-row md:gap-4">
+          <div className="flex-none w-full md:w-2/3 mb-8">
+            <p>
+              I am a Lead Product Designer with 20+ years of experience in
+              enterprise cloud and on-premises products, as well as mobile, web
+              and desktop product design. I strive to blend creativity with
+              user-centred design to deliver impactful solutions.
+            </p>
+            <p>
+              Proficient in user research, wire framing, prototyping, visual
+              designing and usability/accessibility testing. Strong collaborator
+              with cross-functional teams, Influencer, proactive, dedicated to
+              crafting products that delight users and drive business
+              objectives.
+            </p>
+          </div>
+          <div className="flex-none w-full md:w-1/3 mb-8">
+            <img
+              src="https://images.prismic.io/vish-website/ZtUYD0aF0TcGJpvK_logo-grid.png?auto=format,compress"
+              alt="Me"
+              className="w-full"
+            />
+          </div>
+        </div>
+        <div className="mb-4">
+          <h2 className="text-2xl font-normal">PROJECTS</h2>
+        </div>
+        <div>
+          {projects.map((project, index) => (
+            <div
+              key={index}
+              className="flex flex-col md:flex-row gap-4 bg-[#F3FAFD] rounded-xl border border-[#C9D9DF] mb-6 cursor-pointer"
+            >
+              <div className="w-full md:w-1/2">
+                <img
+                  src={project.imgSrc}
+                  alt={project.title}
+                  className="w-full rounded-tl-xl rounded-bl-xl"
+                />
+              </div>
+              <div className="w-full md:w-1/2 flex flex-col gap-4 justify-start p-4 relative group">
+                <img src={project.logoSrc} alt="logo" className="w-[80px]" />
+                <h3 className="text-lg">{project.title}</h3>
+                <p>{project.description}</p>
+                <img
+                  src="https://images.prismic.io/vish-website/ZtUe5EaF0TcGJpzV_icon1.png?auto=format,compress"
+                  className={
+                    "absolute right-2 top-2 w-[18px] hidden group-hover:block"
+                  }
+                  alt="info icon"
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </>
+  );
+};
+
 /**
  * @param {{ params: Params }}
  */
@@ -167,68 +233,7 @@ export default async function Page({ params }) {
 
   const title = asText(page.data.title);
   if (params.uid === "ux_design_protected") {
-    return (
-      <>
-        <PageHeader params={params} title="About Me" />
-        <div className="container m-auto max-w-6xl px-6 mt-5  justify-center">
-          <div className="flex flex-col md:flex-row md:gap-4">
-            <div className="flex-none w-full md:w-2/3 mb-8">
-              <p>
-                I am a Lead Product Designer with 20+ years of experience in
-                enterprise cloud and on-premises products, as well as mobile,
-                web and desktop product design. I strive to blend creativity
-                with user-centred design to deliver impactful solutions.
-              </p>
-              <p>
-                Proficient in user research, wire framing, prototyping, visual
-                designing and usability/accessibility testing. Strong
-                collaborator with cross-functional teams, Influencer, proactive,
-                dedicated to crafting products that delight users and drive
-                business objectives.
-              </p>
-            </div>
-            <div className="flex-none w-full md:w-1/3 mb-8">
-              <img
-                src="https://images.prismic.io/vish-website/ZtUYD0aF0TcGJpvK_logo-grid.png?auto=format,compress"
-                alt="Me"
-                className="w-full"
-              />
-            </div>
-          </div>
-          <div className="mb-4">
-            <h2 className="text-2xl font-normal">PROJECTS</h2>
-          </div>
-          <div>
-            {projects.map((project, index) => (
-              <div
-                key={index}
-                className="flex flex-col md:flex-row gap-4 bg-[#F3FAFD] rounded-xl border border-[#C9D9DF] mb-6 cursor-pointer"
-              >
-                <div className="w-full md:w-1/2">
-                  <img
-                    src={project.imgSrc}
-                    alt={project.title}
-                    className="w-full rounded-tl-xl rounded-bl-xl"
-                  />
-                </div>
-                <div className="w-full md:w-1/2 flex flex-col gap-4 justify-start p-4 relative group">
-                  <img src={project.logoSrc} alt="logo" className="w-[80px]" />
-                  <h3 className="text-lg">{project.title}</h3>
-                  <p>{project.description}</p>
-                  <img
-                    src="https://images.prismic.io/vish-website/ZtUe5EaF0TcGJpzV_icon1.png?auto=format,compress"
-                    className={
-                      "absolute right-2 top-2 w-[18px] hidden group-hover:block"
-                    }
-                    alt="info icon"
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </>
-    );
+    return <UXDesignPage params={params} />;
   }
   return (
     <>
