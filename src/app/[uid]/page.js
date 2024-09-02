@@ -177,22 +177,20 @@ const UXDesignPage = ({ params }) => {
         </div>
         <div>
           {projects.map((project, index) => (
-            <div
-              key={index}
-              className="flex flex-col md:flex-row gap-4 bg-[#F3FAFD] rounded-xl border border-[#C9D9DF] mb-6 cursor-pointer"
-            >
-              <div className="w-full md:w-1/2">
-                <img
-                  src={project.imgSrc}
-                  alt={project.title}
-                  className="w-full rounded-tl-xl rounded-bl-xl"
-                />
-              </div>
-              <div className="w-full md:w-1/2 flex flex-col gap-4 justify-start p-4 relative group">
-                <img src={project.logoSrc} alt="logo" className="w-[80px]" />
-                <h3 className="text-lg">{project.title}</h3>
-                <p>{project.description}</p>
-                <a href={project.link}>
+            <a href={project.link} key={index}>
+              <div className="flex flex-col md:flex-row gap-4 bg-[#F3FAFD] rounded-xl border border-[#C9D9DF] mb-6 cursor-pointer">
+                <div className="w-full md:w-1/2">
+                  <img
+                    src={project.imgSrc}
+                    alt={project.title}
+                    className="w-full rounded-tl-xl rounded-bl-xl"
+                  />
+                </div>
+                <div className="w-full md:w-1/2 flex flex-col gap-4 justify-start p-4 relative group">
+                  <img src={project.logoSrc} alt="logo" className="w-[80px]" />
+                  <h3 className="text-lg text-slate-800">{project.title}</h3>
+                  <p className="text-slate-800">{project.description}</p>
+
                   <img
                     src="https://images.prismic.io/vish-website/ZtUe5EaF0TcGJpzV_icon1.png?auto=format,compress"
                     className={
@@ -200,9 +198,9 @@ const UXDesignPage = ({ params }) => {
                     }
                     alt="info icon"
                   />
-                </a>
+                </div>
               </div>
-            </div>
+            </a>
           ))}
         </div>
       </div>
