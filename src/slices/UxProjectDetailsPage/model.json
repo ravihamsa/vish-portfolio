@@ -1,0 +1,16 @@
+{
+  "id": "ux_project_details_page",
+  "type": "SharedSlice",
+  "name": "UxProjectDetailsPage",
+  "description": "UxProjectDetailsPage",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": ""
+    }
+  ]
+}

@@ -11,4 +11,5 @@ export const components = {
   slider: dynamic(() => import("./Slider")),
   text: dynamic(() => import("./Text")),
   text_with_image: dynamic(() => import("./TextWithImage")),
+  ux_project_details_page: dynamic(() => import("./UxProjectDetailsPage")),
 };

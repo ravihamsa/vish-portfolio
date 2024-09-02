@@ -1103,6 +1103,36 @@ export type TextWithImageSlice = prismic.SharedSlice<
   TextWithImageSliceVariation
 >;
 
+/**
+ * Default variation for UxProjectDetailsPage Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type UxProjectDetailsPageSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Record<string, never>,
+  never
+>;
+
+/**
+ * Slice variation for *UxProjectDetailsPage*
+ */
+type UxProjectDetailsPageSliceVariation = UxProjectDetailsPageSliceDefault;
+
+/**
+ * UxProjectDetailsPage Shared Slice
+ *
+ * - **API ID**: `ux_project_details_page`
+ * - **Description**: UxProjectDetailsPage
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type UxProjectDetailsPageSlice = prismic.SharedSlice<
+  "ux_project_details_page",
+  UxProjectDetailsPageSliceVariation
+>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -1172,6 +1202,9 @@ declare module "@prismicio/client" {
       TextWithImageSliceVariation,
       TextWithImageSliceDefault,
       TextWithImageSliceWithButton,
+      UxProjectDetailsPageSlice,
+      UxProjectDetailsPageSliceVariation,
+      UxProjectDetailsPageSliceDefault,
     };
   }
 }

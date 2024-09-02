@@ -101,6 +101,7 @@ const projects = [
     imgSrc:
       "https://images.prismic.io/vish-website/ZtFtpkaF0TcGJjyG_project1.png?auto=format,compress",
     imgAlt: "Project 1",
+    link: "/project-cloud-1",
     logoSrc:
       "https://images.prismic.io/vish-website/ZtFtpUaF0TcGJjyF_cloud_logo.png?auto=format,compress",
     title: "SD-WAN Orchestrator: Software and Configuration Deployment",
@@ -111,6 +112,7 @@ const projects = [
     imgSrc:
       "https://images.prismic.io/vish-website/ZtUa4kaF0TcGJpvd_project_2_thumb.png?auto=format,compress",
     imgAlt: "SD-WAN Orchestrator - Appliance bulk action",
+    link: "/project-cloud-2",
     logoSrc:
       "https://images.prismic.io/vish-website/ZtFtpUaF0TcGJjyF_cloud_logo.png?auto=format,compress",
     title: "SD-WAN Orchestrator - Appliance bulk action",
@@ -121,6 +123,7 @@ const projects = [
     imgSrc:
       "https://images.prismic.io/vish-website/ZtUa40aF0TcGJpve_project_3_thumb.png?auto=format,compress",
     imgAlt: "InMobi - My Apps dashboard",
+    link: "/project-inmobi",
     logoSrc:
       "https://images.prismic.io/vish-website/ZtUa4UaF0TcGJpvc_inmobi_logo.png?auto=format,compress",
     title: "InMobi - My Apps dashboard",
@@ -131,6 +134,7 @@ const projects = [
     imgSrc:
       "https://images.prismic.io/vish-website/ZtFtpkaF0TcGJjyG_project1.png?auto=format,compress",
     imgAlt: "Yahoo! - T20 World Cup 2007",
+    link: "/project-yahoo",
     logoSrc:
       "https://images.prismic.io/vish-website/ZtUeGEaF0TcGJpzM_yahoo_logo.png?auto=format,compress",
     title: "Yahoo! - T20 World Cup 2007",
@@ -188,13 +192,15 @@ const UXDesignPage = ({ params }) => {
                 <img src={project.logoSrc} alt="logo" className="w-[80px]" />
                 <h3 className="text-lg">{project.title}</h3>
                 <p>{project.description}</p>
-                <img
-                  src="https://images.prismic.io/vish-website/ZtUe5EaF0TcGJpzV_icon1.png?auto=format,compress"
-                  className={
-                    "absolute right-2 top-2 w-[18px] hidden group-hover:block"
-                  }
-                  alt="info icon"
-                />
+                <a href={project.link}>
+                  <img
+                    src="https://images.prismic.io/vish-website/ZtUe5EaF0TcGJpzV_icon1.png?auto=format,compress"
+                    className={
+                      "absolute right-2 top-2 w-[18px] hidden group-hover:block"
+                    }
+                    alt="info icon"
+                  />
+                </a>
               </div>
             </div>
           ))}
@@ -209,6 +215,7 @@ const UXDesignPage = ({ params }) => {
  */
 export default async function Page({ params }) {
   const client = createClient();
+  console.log({ params });
   const page = await client
     .getByUID("page", params.uid, {
       fetchLinks: [
